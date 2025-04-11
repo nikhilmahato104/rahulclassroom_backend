@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home</title>
+  <title>Home - Admin Login</title>
   <style>
     * {
       box-sizing: border-box;
@@ -13,56 +13,78 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #1e3c72, #2a5298); /* Deep Blue Gradient */
+      background: linear-gradient(to right, #1e3c72, #2a5298);
       color: #fff;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      text-align: center;
       padding: 20px;
+      text-align: center;
     }
 
     h1 {
-      font-size: 3rem;
-      margin-bottom: 30px;
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-      color: #ff8c00; /* Orange */
+      font-size: 2.5rem;
+      color: #ff8c00;
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
     }
 
-    a {
-      display: inline-block;
-      background-color: #ff8c00; /* Orange */
-      color: #ffffff;
-      padding: 12px 25px;
+    form {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 350px;
+      gap: 15px;
+    }
+
+    input {
+      padding: 12px;
+      border: none;
       border-radius: 8px;
-      text-decoration: none;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    button {
+      background-color: #ff8c00;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
       font-weight: bold;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    a:hover {
+    button:hover {
       background-color: #ffa733;
-      transform: translateY(-2px);
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 500px) {
       h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
 
-      a {
-        font-size: 1rem;
-        padding: 10px 20px;
+      form {
+        padding: 20px;
       }
     }
   </style>
 </head>
 <body>
-  <h1>Welcome</h1>
-  <a href="/admin">Go to Admin Panel</a>
+  <h1>Welcome Rahul</h1>
+  <h1>Admin Login</h1>
+  <form action="/login" method="POST">
+    <input type="text" name="username" placeholder="Username" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
 </body>
 </html>
