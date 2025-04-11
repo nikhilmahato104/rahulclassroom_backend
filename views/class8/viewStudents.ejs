@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Students</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 40px 20px;
+      scroll-behavior: smooth;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #ff9800;
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 90%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+      color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      margin-bottom: 30px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f57c00;
+      color: #fff;
+    }
+
+    a {
+      background-color: #fff;
+      color: #1e3c72;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    a:hover {
+      background-color: #f0f0f0;
+      transform: translateY(-2px);
+    }
+
+    td a {
+      color: #d32f2f;
+      background-color: #ffe5e5;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    td a:hover {
+      background-color: #ffc7c7;
+    }
+
+    .fee-btn {
+      margin: 2px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: background-color 0.2s ease;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      th, td {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+
+      a, .fee-btn {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Students</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Roll</th>
+        <th>Name</th>
+        <th>Delete</th>
+        <th>Fees</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% const months = ["jan-2025", "feb-2025", "mar-2025", "apr-2025", "may-2025", "jun-2025", "jul-2025", "aug-2025", "sep-2025", "oct-2025", "nov-2025", "dec-2025", "jan-2026", "feb-2026", "mar-2026", "apr-2026", "may-2026"]; %>
+
+      <% students.forEach(student => { %>
+        <tr>
+          <td><%= student.roll %></td>
+          <td><%= student.name %></td>
+          <td><a href="/class8/delete/<%= student._id %>">Delete</a></td>
+          <td>
+            <% months.forEach(month => {
+              const isPaid = student.fees?.get(month);
+            %>
+              <button 
+                class="fee-btn"
+                data-id="<%= student._id %>"
+                data-month="<%= month %>"
+                data-paid="<%= isPaid %>"
+                style="background-color: <%= isPaid ? '#4caf50' : '#ddd' %>; color: <%= isPaid ? '#fff' : '#000' %>;"
+              >
+                <%= month %>
+              </button>
+            <% }); %>
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+
+  <a href="/class8">Back</a>
+
+  <script>
+    document.querySelectorAll('.fee-btn').forEach(button => {
+      button.addEventListener('click', async () => {
+        const id = button.dataset.id;
+        const month = button.dataset.month;
+        const currentStatus = button.dataset.paid === "true";
+        const newStatus = !currentStatus;
+
+        try {
+          const res = await fetch(`/class8/update-fee/${id}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              month,
+              status: newStatus
+            })
+          });
+
+          const result = await res.json();
+          if (result.success) {
+            button.dataset.paid = newStatus;
+            button.style.backgroundColor = newStatus ? '#4caf50' : '#ddd';
+            button.style.color = newStatus ? '#fff' : '#000';
+          } else {
+            alert('Failed to update fee status.');
+          }
+        } catch (error) {
+          alert('Error occurred while updating.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
