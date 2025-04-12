@@ -24,7 +24,7 @@ router.post('/add', async (req, res) => {
 
 router.get('/delete/:id', async (req, res) => {
   await Student11arts.findByIdAndDelete(req.params.id);
-  res.redirect('/classarts/view');
+  res.redirect('/class11arts/view');
 });
 
 
