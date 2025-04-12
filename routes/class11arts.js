@@ -14,7 +14,7 @@ router.get('/view', async (req, res) => {
 router.get('/add', (req, res) => {
   res.render('class11arts/addStudent');
 });
-
+//ad
 router.post('/add', async (req, res) => {
   const { roll, name } = req.body;
   const student = new Student11arts({ roll, name });
