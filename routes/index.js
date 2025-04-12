@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
   res.render('index');
 });
 
+//a
 // GET /login – show login form
 router.get('/login', (req, res) => {
   res.render('login', { error: null });

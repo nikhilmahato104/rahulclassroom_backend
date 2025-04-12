@@ -126,7 +126,7 @@
         <tr>
           <td><%= student.roll %></td>
           <td><%= student.name %></td>
-          <td><a href="/class10/delete/<%= student._id %>">Delete</a></td>
+          <td><a href="/class11arts/delete/<%= student._id %>">Delete</a></td>
           <td>
             <% months.forEach(month => {
               const isPaid = student.fees?.get(month);
@@ -147,7 +147,7 @@
     </tbody>
   </table>
 
-  <a href="/class10">Back</a>
+  <a href="/class11arts">Back</a>
 
   <script>
     document.querySelectorAll('.fee-btn').forEach(button => {
@@ -158,7 +158,7 @@
         const newStatus = !currentStatus;
 
         try {
-          const res = await fetch(`/class10/update-fee/${id}`, {
+          const res = await fetch(`/class11arts/update-fee/${id}`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'

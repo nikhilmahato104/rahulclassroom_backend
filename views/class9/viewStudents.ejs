@@ -13,7 +13,7 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue gradient */
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: #fff;
       min-height: 100vh;
       display: flex;
@@ -32,7 +32,6 @@
 
     table {
       width: 90%;
-      max-width: 700px;
       border-collapse: collapse;
       background-color: #ffffff;
       color: #333;
@@ -43,7 +42,7 @@
     }
 
     th, td {
-      padding: 15px;
+      padding: 12px;
       text-align: center;
       border-bottom: 1px solid #ddd;
     }
@@ -54,7 +53,6 @@
     }
 
     a {
-      display: inline-block;
       background-color: #fff;
       color: #1e3c72;
       padding: 10px 18px;
@@ -84,6 +82,16 @@
       background-color: #ffc7c7;
     }
 
+    .fee-btn {
+      margin: 2px;
+      padding: 6px 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: background-color 0.2s ease;
+    }
+
     @media (max-width: 600px) {
       h1 {
         font-size: 2rem;
@@ -94,33 +102,86 @@
         padding: 10px;
       }
 
-      a {
-        font-size: 0.9rem;
-        padding: 8px 14px;
+      a, .fee-btn {
+        font-size: 0.85rem;
       }
     }
   </style>
 </head>
 <body>
-  <h1>Class 9 Students</h1>
+  <h1>Students</h1>
   <table>
     <thead>
       <tr>
         <th>Roll</th>
         <th>Name</th>
-        <th>Actions</th>
+        <th>Delete</th>
+        <th>Fees</th>
       </tr>
     </thead>
     <tbody>
+      <% const months = ["jan-2025", "feb-2025", "mar-2025", "apr-2025", "may-2025", "jun-2025", "jul-2025", "aug-2025", "sep-2025", "oct-2025", "nov-2025", "dec-2025", "jan-2026", "feb-2026", "mar-2026", "apr-2026", "may-2026"]; %>
+
       <% students.forEach(student => { %>
         <tr>
           <td><%= student.roll %></td>
           <td><%= student.name %></td>
           <td><a href="/class9/delete/<%= student._id %>">Delete</a></td>
+          <td>
+            <% months.forEach(month => {
+              const isPaid = student.fees?.get(month);
+            %>
+              <button 
+                class="fee-btn"
+                data-id="<%= student._id %>"
+                data-month="<%= month %>"
+                data-paid="<%= isPaid %>"
+                style="background-color: <%= isPaid ? '#4caf50' : '#ddd' %>; color: <%= isPaid ? '#fff' : '#000' %>;"
+              >
+                <%= month %>
+              </button>
+            <% }); %>
+          </td>
         </tr>
       <% }); %>
     </tbody>
   </table>
+
   <a href="/class9">Back</a>
+
+  <script>
+    document.querySelectorAll('.fee-btn').forEach(button => {
+      button.addEventListener('click', async () => {
+        const id = button.dataset.id;
+        const month = button.dataset.month;
+        const currentStatus = button.dataset.paid === "true";
+        const newStatus = !currentStatus;
+
+        try {
+          const res = await fetch(`/class9/update-fee/${id}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              month,
+              status: newStatus
+            })
+          });
+
+          const result = await res.json();
+          if (result.success) {
+            button.dataset.paid = newStatus;
+            button.style.backgroundColor = newStatus ? '#4caf50' : '#ddd';
+            button.style.color = newStatus ? '#fff' : '#000';
+          } else {
+            alert('Failed to update fee status.');
+          }
+        } catch (error) {
+          alert('Error occurred while updating.');
+        }
+      });
+    });
+  </script>
 </body>
 </html>

@@ -1,33 +1,38 @@
 import express from 'express';
 const router = express.Router();
-import Student10 from '../models/Student10.js'; // Note the .js extension
+import Student11arts from '../models/Student11arts.js'; // Note the .js extension
 
 router.get('/', (req, res) => {
-  res.render('class10/operations');
+  res.render('class11arts/operations');
 });
 
 router.get('/view', async (req, res) => {
-  const students = await Student10.find();
-  res.render('class10/viewStudents', { students });
+  const students = await Student11arts.find();
+  res.render('class11arts/viewStudents', { students });
 });
 
 router.get('/add', (req, res) => {
-  res.render('class10/addStudent');
+  res.render('class11arts/addStudent');
 });
 
 router.post('/add', async (req, res) => {
   const { roll, name } = req.body;
-  const student = new Student10({ roll, name });
+  const student = new Student11arts({ roll, name });
   await student.save();
-  res.redirect('/class10/view');
+  res.redirect('/class11arts/view');
 });
 
 router.get('/delete/:id', async (req, res) => {
-  await Student10.findByIdAndDelete(req.params.id);
-  res.redirect('/class10/view');
+  await Student11arts.findByIdAndDelete(req.params.id);
+  res.redirect('/classarts/view');
 });
 
-// Fee update
+
+
+
+
+//fee 
+
 router.post('/update-fee/:id', async (req, res) => {
   const { month, status } = req.body;
 
@@ -37,7 +42,7 @@ router.post('/update-fee/:id', async (req, res) => {
   console.log('Status:', status);
 
   try {
-    const student = await Student10.findById(req.params.id);
+    const student = await Student11arts.findById(req.params.id);
     if (!student) {
       return res.status(404).json({ success: false, message: 'Student not found' });
     }
@@ -54,14 +59,16 @@ router.post('/update-fee/:id', async (req, res) => {
   }
 });
 
+
 // API for React frontend to fetch students as JSON
 router.get('/api/students', async (req, res) => {
   try {
-    const students = await Student10.find();
+    const students = await Student11arts.find();
     res.json(students);
   } catch (err) {
     res.status(500).json({ message: "Failed to fetch students" });
   }
 });
+
 
 export default router; // This is the crucial line!

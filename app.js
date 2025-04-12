@@ -12,6 +12,8 @@ import adminRouter from './routes/admin.js';
 import class8Router from './routes/class8.js';
 import class9Router from './routes/class9.js';
 import class10Router from './routes/class10.js';
+import class11artsRouter from './routes/class11arts.js';
+
 
 dotenv.config();
 
@@ -62,7 +64,7 @@ app.use('/admin', adminRouter);
 app.use('/class8', class8Router);
 app.use('/class9', class9Router);
 app.use('/class10', class10Router);
-
+app.use('/class11arts', class11artsRouter);
 // ----------------------
 // Start Server
 // ----------------------

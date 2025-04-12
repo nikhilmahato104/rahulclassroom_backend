@@ -28,6 +28,6 @@ const studentSchema = new mongoose.Schema({
   }
 });
 
-const Student10 = mongoose.model('Student10', studentSchema);
+const Student11arts = mongoose.model('Student11arts', studentSchema);
 
-export default Student10;
+export default Student11arts;
