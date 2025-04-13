@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Panel</title>
+  <title>MCQ Test Operations</title>
   <style>
     * {
       box-sizing: border-box;
@@ -13,7 +13,7 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #1e3c72, #2a5298); /* Blue Gradient */
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
       color: #fff;
       min-height: 100vh;
       display: flex;
@@ -27,33 +27,33 @@
     h1 {
       font-size: 2.8rem;
       margin-bottom: 40px;
-      color: #ff8c00; /* Orange */
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+      color: #ff9800;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
     }
 
     .link-container {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 20px;
       width: 100%;
-      max-width: 320px;
+      max-width: 300px;
     }
 
     a {
       display: block;
-      background-color: #ff8c00; /* Orange */
-      color: #fff;
+      background-color: #ffffff;
+      color: #1e3c72;
       padding: 12px;
       border-radius: 10px;
       text-decoration: none;
       font-weight: bold;
       font-size: 1.1rem;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
       transition: all 0.3s ease;
     }
 
     a:hover {
-      background-color: #ffa733;
+      background-color: #f0f0f0;
       transform: translateY(-3px);
     }
 
@@ -70,13 +70,11 @@
   </style>
 </head>
 <body>
-  <h1>Admin Panel</h1>
+  <h1>MCQ Test Operations</h1>
   <div class="link-container">
-    <a href="/class8">Class 8 Operations</a>
-    <a href="/class9">Class 9 Operations</a>
-    <a href="/class10">Class 10 Operations</a>
-    <a href="/class11arts">Class 11 arts Operations</a>
-    <a href="/mcqTest">MCQ Test Operations</a> <!-- ✅ NEW LINK -->
+    <a href="/mcqTest/add">Add New Test</a>
+    <a href="/mcqTest/view">View All Tests</a>
+    <a href="/viewresult">View Student Results</a> <!-- ✅ New Button -->
   </div>
 </body>
 </html>

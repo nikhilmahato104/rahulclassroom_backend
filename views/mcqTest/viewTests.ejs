@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All MCQ Tests</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #ff9800;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    ul {
+      list-style: none;
+      width: 100%;
+      max-width: 600px;
+      padding: 0;
+    }
+
+    li {
+      background-color: #ffffff;
+      color: #1e3c72;
+      margin-bottom: 15px;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+
+    li:hover {
+      transform: translateY(-4px);
+    }
+
+    strong {
+      font-size: 1.1rem;
+    }
+
+    a {
+      background-color: #e53935;
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #ff5252;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>All MCQ Tests</h1>
+  <ul>
+    <% tests.forEach(test => { %>
+      <li>
+        <strong><%= test.testName %></strong>
+        <a href="/mcqTest/delete/<%= test._id %>">Delete</a>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>

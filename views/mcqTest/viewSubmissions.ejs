@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Test Submissions</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #1e3c72;
+      margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 0 10px #ccc;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #1e3c72;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .highlight {
+      font-weight: bold;
+      color: #ff5722;
+    }
+  </style>
+</head>
+<body>
+  <h1>Student Test Submissions</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Roll No.</th>
+        <th>Test</th>
+        <th>Marks</th>
+        <th>Time Taken (s)</th>
+        <th>Copy Attempts</th>
+        <th>Tab Switches</th>
+        <th>Submitted At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% submissions.forEach(sub => { 
+        let correct = 0;
+        if (sub.testId && sub.testId.questions) {
+          sub.testId.questions.forEach((q, idx) => {
+            if (q.correctOption === sub.answers[idx]) correct++;
+          });
+        }
+      %>
+        <tr>
+          <td><%= sub.studentName %></td>
+          <td><%= sub.rollNumber %></td>
+          <td><%= sub.testId ? sub.testId.testName : 'N/A' %></td>
+          <td class="highlight"><%= correct %> / <%= sub.testId.questions.length %></td>
+          <td><%= sub.timeTaken %></td>
+          <td><%= sub.copyAttempts %></td>
+          <td><%= sub.tabSwitches %></td>
+          <td><%= new Date(sub.submittedAt).toLocaleString() %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>
