@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -53,6 +53,87 @@
         }
    %>
    
+        <tr>
+          <td><%= sub.studentName %></td>
+          <td><%= sub.rollNumber %></td>
+          <td><%= sub.testId ? sub.testId.testName : 'N/A' %></td>
+          <td class="highlight"><%= correct %> / <%= sub.testId ? sub.testId.questions.length : 'N/A' %></td>
+          <td><%= sub.timeTaken %></td>
+          <td><%= sub.copyAttempts %></td>
+          <td><%= sub.tabSwitches %></td>
+          <td><%= new Date(sub.submittedAt).toLocaleString() %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html> -->
+
+
+
+
+
+<!-- Auto Refreshing 5 seconds -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Student Test Submissions</title>
+  <link rel="stylesheet" href="/styles/mcqtest.css">
+  <style>
+    /* Optional inline styles for the submissions page */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background: #1e3c72;
+      color: #fff;
+    }
+    .highlight {
+      color: #ff5722;
+      font-weight: bold;
+    }
+  </style>
+  <script>
+    // Auto-refresh the page every 5 seconds
+    setTimeout(() => {
+      window.location.reload();
+    }, 5000);
+  </script>
+</head>
+<body>
+  <h1>Student Test Submissions</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Roll No.</th>
+        <th>Test</th>
+        <th>Marks</th>
+        <th>Time Taken (s)</th>
+        <th>Copy Attempts</th>
+        <th>Tab Switches</th>
+        <th>Submitted At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% submissions.forEach(sub => { 
+        let correct = 0;
+        if (sub.testId && sub.testId.questions) {
+          sub.testId.questions.forEach((q, idx) => {
+            //FIX: Use correctOption instead of incorrect correctAnswer
+            if (Number(q.correctOption) === Number(sub.answers[idx])) {
+              correct++;
+            }
+          });
+        }
+   %>
         <tr>
           <td><%= sub.studentName %></td>
           <td><%= sub.rollNumber %></td>
