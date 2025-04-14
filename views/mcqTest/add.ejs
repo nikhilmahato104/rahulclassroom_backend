@@ -4,6 +4,97 @@
   <meta charset="UTF-8" />
   <title>Add MCQ Test</title>
   <link rel="stylesheet" href="/styles/mcqtest.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+      min-height: 100vh;
+      padding: 30px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: #ff9800;
+      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    form {
+      background: #ffffff;
+      color: #1e3c72;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .question-block {
+      margin-top: 20px;
+      padding: 15px;
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+    }
+
+    button {
+      padding: 12px 20px;
+      background-color: #1e3c72;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-right: 10px;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #16315e;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      form {
+        padding: 15px;
+      }
+
+      button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+  
 </head>
 <body>
   <h1>Add New MCQ Test</h1>
@@ -16,7 +107,7 @@
     </div>
 
     <button type="button" onclick="addQuestion()">Add Question</button>
-    <button type="submit">Submit Test</button>
+    <button type="submit">Submit Test SetUp</button>
   </form>
 
   <script>

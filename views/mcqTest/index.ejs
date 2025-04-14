@@ -4,7 +4,80 @@
   <meta charset="UTF-8" />
   <title>MCQ Test Operations</title>
   <link rel="stylesheet" href="/styles/mcqtest.css">
+  <style>
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #1e3c72, #2a5298); /* Blue Gradient */
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 5.5rem;
+  margin-bottom: 40px;
+  color: #ff8c00; /* Orange */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.link-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 440px;
+}
+
+a {
+  display: block;
+  background-color: #ff8c00; /* Orange */
+  color: #fff;
+  padding: 26px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 2.4rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  background-color: #ffa733;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.6rem;
+    margin-bottom: 30px;
+  }
+
+  .link-container {
+    width: 90%;
+    gap: 16px;
+  }
+
+  a {
+    font-size: 1.2rem;
+    padding: 14px;
+  }
+}
+
+  </style>
+  
 </head>
+
 <body>
   <h1>MCQ Test Operations</h1>
   <div class="link-container">
