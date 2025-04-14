@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>View MCQ Tests</title>
+  <link rel="stylesheet" href="/styles/mcqtest.css">
+</head>
+<body>
+  <h1>All MCQ Tests</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Test Name</th>
+        <th>Number of Questions</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% tests.forEach(test => { %>
+        <tr>
+          <td><%= test.testName %></td>
+          <td><%= test.questions.length %></td>
+          <td>
+            <form action="/mcqTest/delete/<%= test._id %>" method="POST" onsubmit="return confirm('Are you sure you want to delete this test?');">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>

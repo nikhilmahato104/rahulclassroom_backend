@@ -1,23 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>Student Test Submissions</title>
+  <link rel="stylesheet" href="/styles/mcqtest.css">
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #ffffff;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      color: #1e3c72;
-      margin-bottom: 30px;
-    }
+    /* Optional inline styles for the submissions page */
     table {
       width: 100%;
       border-collapse: collapse;
-      background: #fff;
-      box-shadow: 0 0 10px #ccc;
     }
     th, td {
       border: 1px solid #ddd;
@@ -25,15 +16,12 @@
       text-align: center;
     }
     th {
-      background-color: #1e3c72;
-      color: white;
-    }
-    tr:nth-child(even) {
-      background-color: #f9f9f9;
+      background: #1e3c72;
+      color: #fff;
     }
     .highlight {
-      font-weight: bold;
       color: #ff5722;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -57,15 +45,19 @@
         let correct = 0;
         if (sub.testId && sub.testId.questions) {
           sub.testId.questions.forEach((q, idx) => {
-            if (q.correctOption === sub.answers[idx]) correct++;
+            //FIX: Use correctOption instead of incorrect correctAnswer
+            if (Number(q.correctOption) === Number(sub.answers[idx])) {
+              correct++;
+            }
           });
         }
-      %>
+   %>
+   
         <tr>
           <td><%= sub.studentName %></td>
           <td><%= sub.rollNumber %></td>
           <td><%= sub.testId ? sub.testId.testName : 'N/A' %></td>
-          <td class="highlight"><%= correct %> / <%= sub.testId.questions.length %></td>
+          <td class="highlight"><%= correct %> / <%= sub.testId ? sub.testId.questions.length : 'N/A' %></td>
           <td><%= sub.timeTaken %></td>
           <td><%= sub.copyAttempts %></td>
           <td><%= sub.tabSwitches %></td>

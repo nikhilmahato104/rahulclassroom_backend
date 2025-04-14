@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Add MCQ Test</title>
+  <link rel="stylesheet" href="/styles/mcqtest.css">
+</head>
+<body>
+  <h1>Add New MCQ Test</h1>
+  <form action="/mcqTest/add" method="POST">
+    <label for="testName">Test Name:</label>
+    <input type="text" name="testName" required>
+
+    <div id="questions-container">
+      <!-- Questions will be inserted here by JS -->
+    </div>
+
+    <button type="button" onclick="addQuestion()">Add Question</button>
+    <button type="submit">Submit Test</button>
+  </form>
+
+  <script>
+    function addQuestion() {
+      const container = document.getElementById('questions-container');
+      const index = container.children.length;
+
+      const questionHTML = `
+        <div class="question-block">
+          <h3>Question ${index + 1}</h3>
+          <input type="text" name="questions[${index}][questionText]" placeholder="Enter question text" required>
+          <br>
+          <input type="text" name="questions[${index}][options][]" placeholder="Option 1" required>
+          <input type="text" name="questions[${index}][options][]" placeholder="Option 2" required>
+          <input type="text" name="questions[${index}][options][]" placeholder="Option 3" required>
+          <input type="text" name="questions[${index}][options][]" placeholder="Option 4" required>
+          <br>
+          <label>Correct Answer (0-3):</label>
+          <input type="number" name="questions[${index}][correctOption]" min="0" max="3" required>
+          <hr>
+        </div>
+      `;
+      container.insertAdjacentHTML('beforeend', questionHTML);
+    }
+  </script>
+</body>
+</html>

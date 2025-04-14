@@ -1,16 +1,14 @@
 import mongoose from 'mongoose';
 
-const mcqSchema = new mongoose.Schema({
-  testName: { type: String, required: true },  // Name of the MCQ test
-  questions: [{
-    questionText: { type: String, required: true },  // The MCQ question
-    options: [{ 
-      type: String, required: true  // Each option for the MCQ
-    }],
-    correctAnswer: { type: Number, required: true },  // Index of the correct option (0-based)
-  }]
+const questionSchema = new mongoose.Schema({
+  questionText: { type: String, required: true },
+  options: [{ type: String, required: true }],
+  correctOption: { type: Number, required: true },
 });
 
-const McqTest = mongoose.model('McqTest', mcqSchema);
+const mcqTestSchema = new mongoose.Schema({
+  testName: { type: String, required: true },
+  questions: [questionSchema],
+});
 
-export default McqTest;
+export default mongoose.model('McqTest', mcqTestSchema);
